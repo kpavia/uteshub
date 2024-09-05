@@ -1,0 +1,151 @@
+{% extends "football/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-8 text-center table-responsive" id="table-wrapper">
+            <h2 class="text-decoration-underline">Current {{ season.year }} schedule</h2>
+            <div class="row">
+                <div class="col">
+                    <h3>{{ record.wins }} - {{ record.losses }}</h3>
+                </div>
+            </div>
+            <table class="text-center table" id="schedule">
+                <tr style="text-align: left;">
+                    <th>Date</th>
+                    <th>Opponent</th>
+                    <th>Network & Start Time</th>
+                    <th>Scores</th>
+                </tr>
+                {% for game in schedule %}
+                    <tr style="text-align: left;">
+                        <td>{{ game.date }}</td>
+                        {% if game.is_home_game %}
+                            <td>vs {{ game.opponent }}</td>
+                        {% else %}
+                            <td>
+                                @ {{ game.opponent }}
+                            </td>
+                        {% endif %}
+                        {% if game.network %}
+                            <td>{{ game.network }}, {{game.start_time }}</td>
+                        {% else %}
+                            <td>TBD</td>
+                        {% endif %}
+                        {% if game.points_for > game.points_against %}
+                            <td>
+                                <span class="win">W</span>,  {{game.points_for}} - {{ game.points_against }}
+                            </td>
+                        {% elif game.points_for == game.points_against %}
+                            <td>TBD</td>
+                        {% else %}
+                            <td>
+                                <span class="loss">L</span>,  {{game.points_for}} - {{ game.points_against }}
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-4 text-center">
+            <h2 class="text-decoration-underline">Current Rankings</h2>
+            <div class="row">
+                <div class="col">
+                    <img src="{% static 'football/images/ap_top_25.jpg' %}" id="ap_logo" class="img-fluid"/>
+                    <p class="fs-1"> Week {{ ap_rank.week }}: #{{ ap_rank.rank }}</p>
+                </div>
+            </div>
+            <div class="row text-center mt-5">
+                <div class="col">
+                    <img src="{% static 'football/images/cfp_logo.jpg' %}" id="cfp_logo" class="img-fluid"/>
+                    {% if cfp_rank %}
+                        <p class="fs-1">Week {{ cfp_rank.week }}: ${{ cfp_rank.rank }}</p>
+                    {% else %}
+                        <p class="fs-1"> NR </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <h2 class="text-center mb-1 headline_background">Latest News & Podcasts</h2>
+        <div class="col text-center">
+            <h3>University of Utah Athletics</h3>
+            <h4>{{ u_of_u_athletics.air_date }}</h4>
+            <iframe
+                width="560" 
+                height="315" 
+                src="{{ u_of_u_athletics.link }}"
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        <div class="col text-center">
+            <h3>Latest Game Highlights</h3>
+            <h4>{{ game_highlights.air_date }}</h4>
+            <iframe
+                width="560" 
+                height="315" 
+                src="{{ game_highlights.link }}"
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col text-center">
+            <div class="row">
+                <div class="col">
+                    <h3>ESPN 700: Rising Report</h3>
+                    <h4>{{ rr.air_date }}</h4>
+                    <iframe
+                        width="560" 
+                        height="315" 
+                        src="{{ rr.link }}"
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="col">
+                    <h3>Utah Football Fans</h3>
+                    <h4>{{ utff.air_date }}</h4>
+                    <iframe
+                        width="560" 
+                        height="315" 
+                        src="{{ utff.link }}"
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="col">
+                    <h3>Locked On Utes</h3>
+                    <h4>{{ lou.air_date }}</h4>
+                    <iframe
+                        width="560" 
+                        height="315" 
+                        src="{{ lou.link }}"
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <div class="row">
+                
+            </div>
+        </div>
+    </div>
+{% endblock content %}

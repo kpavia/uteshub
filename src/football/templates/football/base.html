@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Utes Hub</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'football/main.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'football/images/utes_hub_logo.png' %}">
+    </head>
+    <header>
+
+    </header>
+    <body class="container-fluid">
+        <div class="row">
+            <div class="col text-center">
+                <h1 id="site-title" class="logo">Utes Hub</h1>
+                <img id="logo-img" src="{% static 'football/images/utes-logo.png' %}" class="text-center"/>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+    <footer class="mt-5 text-center">
+        <p class="pt-5">UtesHub.com is a privately owned fansite and is not affiliated with the University of Utah.</p>
+    </footer>
+</html>
