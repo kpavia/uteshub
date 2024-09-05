@@ -32,7 +32,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = [
     'uteshub.com',
-    'www.uteshub.com'
+    'www.uteshub.com',
+    'localhost:8000',
+    'localhost',
+    '127.0.0.1',
+    '127.0.0.1:8000',
 ]
 AUTH_USER_MODEL = 'user.User'
 

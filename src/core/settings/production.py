@@ -2,7 +2,7 @@ import os
 import dj_database_url
 
 
-CURRENT_YEAR = os.environ.get('CURRENT_SEASON')
+CURRENT_SEASON = os.environ.get('CURRENT_SEASON')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True if os.environ.get('DEBUG').lower() == 'true' else False
 
