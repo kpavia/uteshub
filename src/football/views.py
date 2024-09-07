@@ -36,6 +36,12 @@ def index(request):
     if cfp_rank:
         cfp_rank = cfp_rank.latest('id')
     
+
+    if request.headers.get('Host') in ['localhost', 'localhost:8000', '127.0.0.1', '127.0.0.1:8000']:
+        display_ga = False
+    else:
+        display_ga = True
+    
     context = {
         'schedule': [game for game in schedule],
         'ap_rank': ap_rank,
@@ -46,6 +52,7 @@ def index(request):
         'u_of_u_athletics': u_athletics,
         'record': season_record,
         'game_highlights': game_highlights,
-        'rr': rising_report
+        'rr': rising_report,
+        'display_ga': display_ga
     }
     return render(request, 'football/index.html', context)

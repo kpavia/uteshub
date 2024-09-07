@@ -10,13 +10,15 @@
         <link rel="icon" type="image/x-icon" href="{% static 'football/images/utes_hub_logo.png' %}">
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-5JCM9PVYS4"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+        {% if display_ga %}
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
 
-            gtag('config', 'G-5JCM9PVYS4');
-        </script>
+                gtag('config', 'G-5JCM9PVYS4');
+            </script>
+        {% endif %}
     </head>
     <header>
 
