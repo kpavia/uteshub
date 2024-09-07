@@ -30,13 +30,14 @@ class Game(models.Model):
     opponent_icon = models.ForeignKey('Icon', on_delete=models.CASCADE, null=True)
     network = models.CharField(max_length=16, null=True)
     start_time = models.CharField(max_length=10, null=True)
+    is_conference_game = models.BooleanField(default=True)
 
     def __str__(self):
         return f'{self.date} - Utah vs {self.opponent}'
     
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['date', 'opponent'], name='Date and Opponent unique constraint')
+            models.UniqueConstraint(fields=['date', 'opponent', 'season'], name='Date, season and Opponent unique constraint')
         ]
 
 
