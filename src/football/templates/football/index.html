@@ -4,9 +4,14 @@
     <div class="row mt-5">
         <div class="col-8 text-center table-responsive" id="table-wrapper">
             <h2 class="text-decoration-underline">Current {{ season.year }} schedule</h2>
-            <div class="row">
-                <div class="col">
-                    <h3>{{ record.wins }} - {{ record.losses }}</h3>
+            <div class="row mt-4">
+                <div class="col overall-record">
+                    <h3>Overall</h3>
+                    <p>{{ overall_record.wins }} - {{ overall_record.losses }}</p>
+                </div>
+                <div class="col conference-record">
+                    <h3>Conference</h3>
+                    <p>{{ conference_record.wins }} - {{ conference_record.losses }}</p>
                 </div>
             </div>
             <table class="text-center table" id="schedule">

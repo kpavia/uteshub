@@ -18,19 +18,27 @@ def index(request):
     rising_report = Video.objects.filter(channel='rising_report').latest('air_date')
     wins = 0
     losses = 0
+    c_win = 0
+    c_loss = 0
     for game in schedule:
-        if game.opponent_icon:
-            print(game.opponent_icon)
         if game.points_for:
             if game.points_for > game.points_against:
                 wins += 1
+                if game.is_conference_game:
+                    c_win += 1
             elif game.points_for == game.points_against:
                 continue
             else:
                 losses += 1
+                if game.is_conference_game:
+                    c_loss += 1
     season_record = {
         'wins': wins,
         'losses': losses
+    }
+    conference_record = {
+        'wins': c_win,
+        'losses': c_loss
     }
 
     if cfp_rank:
@@ -50,7 +58,8 @@ def index(request):
         'utff': ut_football_fans,
         'lou': lou,
         'u_of_u_athletics': u_athletics,
-        'record': season_record,
+        'overall_record': season_record,
+        'conference_record': conference_record,
         'game_highlights': game_highlights,
         'rr': rising_report,
         'display_ga': display_ga

@@ -58,3 +58,23 @@ body {
 .loss {
     color: red;
 }
+
+.conference-record {
+    background-color: #C30010;
+    color: #FFFFFF;
+    margin: 0px 50px;
+}
+
+.overall-record {
+    background-color: #C30010;
+    color: #FFFFFF;
+    margin: 0px 50px;
+}
+
+.conference-record p {
+    font-size: 30px;
+}
+
+.overall-record p {
+    font-size: 30px;
+}
