@@ -2,7 +2,32 @@
 {% load static %}
 {% block content %}
     <div class="row mt-5">
-        <div class="col-8 text-center table-responsive" id="table-wrapper">
+        <div class="col text-center">
+            <h2 class="text-decoration-underline">Current Rankings</h2>
+            <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-3">
+                    <img src="{% static 'football/images/ap_top_25.jpg' %}" id="ap_logo" class="img-fluid"/>
+                    <p class="fs-1"> Week {{ ap_rank.week }}: #{{ ap_rank.rank }}</p>
+                </div>
+                <div class="col-3 mt-2">
+                    <img src="{% static 'football/images/cfp_logo.jpg' %}" id="cfp_logo" class="img-fluid"/>
+                    {% if cfp_rank %}
+                        <p class="fs-1">Week {{ cfp_rank.week }}: ${{ cfp_rank.rank }}</p>
+                    {% else %}
+                        <p class="fs-1"> NR </p>
+                    {% endif %}
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col text-center table-responsive" id="table-wrapper">
             <h2 class="text-decoration-underline">Current {{ season.year }} schedule</h2>
             <div class="row mt-4">
                 <div class="col overall-record">
@@ -51,7 +76,7 @@
                 {% endfor %}
             </table>
         </div>
-        <div class="col-4 text-center">
+        <!-- <div class="col-4 text-center">
             <h2 class="text-decoration-underline">Current Rankings</h2>
             <div class="row">
                 <div class="col">
@@ -69,7 +94,7 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="row mt-5">
         <h2 class="text-center mb-1 headline_background">Latest News & Podcasts</h2>
