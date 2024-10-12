@@ -73,97 +73,57 @@
     </div>
     <div class="row mt-5">
         <h2 class="text-center mb-1 headline_background">Latest News & Podcasts</h2>
-        <div class="col text-center">
+        <div class="col-2"></div>
+        <div class="col-12 col-md-4 text-center">
             <h3>University of Utah Athletics</h3>
             <h4>{{ u_of_u_athletics.air_date.date }}</h4>
-            <iframe
-                width="560" 
-                height="315" 
-                src="{{ u_of_u_athletics.link }}"
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-            </iframe>
-        </div>
-        <div class="col text-center">
-            <h3>Latest Game Highlights</h3>
-            <h4>{{ game_highlights.air_date.date }}</h4>
-            <iframe
-                width="560" 
-                height="315" 
-                src="{{ game_highlights.link }}"
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-            </iframe>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col text-center">
-            <div class="row">
-                <div class="col">
-                    <h3>ESPN 700: Rising Report</h3>
-                    <h4>{{ rr.air_date.date }}</h4>
-                    <iframe
-                        width="560" 
-                        height="315" 
-                        src="{{ rr.link }}"
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="col">
-                    <h3>Utah Football Fans</h3>
-                    <h4>{{ utff.air_date.date }}</h4>
-                    <iframe
-                        width="560" 
-                        height="315" 
-                        src="{{ utff.link }}"
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="col">
-                    <h3>Locked On Utes</h3>
-                    <h4>{{ lou.air_date.date }}</h4>
-                    <iframe
-                        width="560" 
-                        height="315" 
-                        src="{{ lou.link }}"
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ u_of_u_athletics.link }}" allowfullscreen></iframe>
             </div>
         </div>
+        <div class="col-12 col-md-4 text-center">
+            <h3>Latest Game Highlights</h3>
+            <h4>{{ game_highlights.air_date.date }}</h4>
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ game_highlights.link }}" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-2"></div>
     </div>
     <div class="row mt-5">
-        <div class="col text-center">
+        <div class="col-2"></div>
+        <div class="col-12 col-md-4 text-center">
+            <h3>ESPN 700: Rising Report</h3>
+            <h4>{{ rr.air_date.date }}</h4>
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ rr.link }}" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+            <h3>Locked On Utes</h3>
+            <h4>{{ lou.air_date.date }}</h4>
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ lou.link }}" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-2"></div>
+        <div class="col-12 col-md-4 text-center">
+            <h3>Utah Football Fans</h3>
+            <h4>{{ utff.air_date.date }}</h4>
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ utff.link }}" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 text-center">
             <h3>Utah Utes Football Digest</h3>
             <h4>{{ uu_digest.air_date.date }}</h4>
-            <iframe
-                width="560" 
-                height="315" 
-                src="{{ uu_digest.link }}"
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-            </iframe>
+            <div class="ratio ratio-16x9">
+                <iframe src="{{ uu_digest.link }}" allowfullscreen></iframe>
+            </div>
         </div>
+        <div class="col-2"></div>
     </div>
 {% endblock content %}
