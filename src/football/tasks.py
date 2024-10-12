@@ -2,6 +2,7 @@ import requests
 from django.conf import settings
 from datetime import datetime
 from football.models import Video
+import pytz
 
 
 def get_youtube_video_id(channel_id):
@@ -45,14 +46,15 @@ def save_video_db(channel_name, video_link):
         'game_highlights': 'game_highlights',
         'athletics': 'u_of_u_athletics'
     }
-    channel = channels.get(channel_name, {})
+    mst = pytz.timezone('US/Mountain')
+    channel = channels.get(channel_name)
     if not channel:
         return (None, False)
     video, created = Video.objects.get_or_create(
         link=video_link,
         defaults={
-            'channel': channels.get(channel),
-            'air_date': datetime.now()
+            'channel': channel,
+            'air_date': datetime.now(mst)
         }
     )
     return (video, created)
@@ -61,6 +63,9 @@ def save_video_db(channel_name, video_link):
 def update_video_db():
     channel_ids = settings.YT_CHANNEL_IDS
     for channel_name, channel_id in channel_ids.items():
+        print(f'Fetching new video for {channel_name}')
         video_id = get_youtube_video_id(channel_id)
-        embed_link = build_embed_link(video_id)
-        save_video_db(channel_name, embed_link)
+        if video_id:
+            embed_link = build_embed_link(video_id)
+            result = save_video_db(channel_name, embed_link)
+            print(f'New video built for {channel_name}: {result[0]}, {result[1]}')

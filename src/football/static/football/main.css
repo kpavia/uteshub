@@ -4,6 +4,12 @@
     #table-wrapper {
         padding: 0px 150px;
     }
+    #ap-rank {
+       padding-left: 400px; 
+    }
+    #cfp-rank {
+        padding-right: 400px;
+    }
 }
 
 
