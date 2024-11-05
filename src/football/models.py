@@ -30,7 +30,7 @@ class Game(models.Model):
     season = models.ForeignKey(Season, on_delete=models.CASCADE)
     opponent_icon = models.ForeignKey('Icon', on_delete=models.CASCADE, null=True)
     network = models.CharField(max_length=16, null=True)
-    start_time = models.CharField(max_length=10, null=True)
+    start_time = models.CharField(max_length=15, null=True)
     is_conference_game = models.BooleanField(default=True)
 
     def __str__(self):
