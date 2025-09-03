@@ -26,7 +26,12 @@ def get_youtube_video_id(channel_id):
 
     request = requests.request('GET', url=search_url, params=params)
     video_id = request.json().get('items', [{}])[0].get('id', {}).get('videoId', {})
+    video_title = request.json().get('items', [{}])[0].get('snippet', {}).get('title', '')
     if video_id:
+        if channel_id == settings.YT_CHANNEL_IDS.get('utah_blockcast'):
+            if 'Utah Blockcast' in video_title:
+                return video_id
+            return None
         return video_id
     print(f'YT GET request failed to get video ID for channel {channel_id}')
     return None
@@ -44,7 +49,8 @@ def save_video_db(channel_name, video_link):
         'utah_football_fans': 'utah_football_fans',
         'rising_report': 'rising_report',
         'game_highlights': 'game_highlights',
-        'athletics': 'u_of_u_athletics'
+        'athletics': 'u_of_u_athletics',
+        'utah_blockcast': 'utah_blockcast'
     }
     mst = pytz.timezone('US/Mountain')
     channel = channels.get(channel_name)

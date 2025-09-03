@@ -17,6 +17,7 @@ def index(request):
     game_highlights = Video.objects.filter(channel='game_highlights').latest('air_date')
     rising_report = Video.objects.filter(channel='rising_report').latest('air_date')
     uu_digest = Video.objects.filter(channel='utes_digest').latest('air_date')
+    utah_blockcast = Video.objects.filter(channel='utah_blockcast').latest('air_date')
     wins = 0
     losses = 0
     c_win = 0
@@ -64,6 +65,7 @@ def index(request):
         'game_highlights': game_highlights,
         'rr': rising_report,
         'display_ga': display_ga,
-        'uu_digest': uu_digest
+        'uu_digest': uu_digest,
+        'utah_blockcast': utah_blockcast
     }
     return render(request, 'football/index.html', context)
