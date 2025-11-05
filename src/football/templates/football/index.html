@@ -12,7 +12,7 @@
                 <div class="col mt-2" id="cfp-rank">
                     <img src="{% static 'football/images/cfp_logo.jpg' %}" id="cfp_logo" class="img-fluid"/>
                     {% if cfp_rank %}
-                        <p class="fs-1">Week {{ cfp_rank.week }}: ${{ cfp_rank.rank }}</p>
+                        <p class="fs-1">Week {{ cfp_rank.week }}: #{{ cfp_rank.rank }}</p>
                     {% else %}
                         <p class="fs-1"> NR </p>
                     {% endif %}
