@@ -10,7 +10,7 @@ def index(request):
     season = Season.objects.filter(year=current_season).first()
     schedule = Game.objects.filter(season=season).order_by('date')
     ap_rank = Ranking.objects.filter(ap_or_cfp='ap').latest('id')
-    cfp_rank = Ranking.objects.filter(ap_or_cfp='cfp')
+    cfp_rank = Ranking.objects.filter(ap_or_cfp='cfp').latest('id')
     ut_football_fans = Video.objects.filter(channel='utah_football_fans').latest('air_date')
     lou = Video.objects.filter(channel='locked_on_utes').latest('air_date')
     u_athletics = Video.objects.filter(channel='u_of_u_athletics').latest('air_date')
@@ -42,9 +42,6 @@ def index(request):
         'wins': c_win,
         'losses': c_loss
     }
-
-    if cfp_rank:
-        cfp_rank = cfp_rank.latest('id')
     
 
     if request.headers.get('Host') in ['localhost', 'localhost:8000', '127.0.0.1', '127.0.0.1:8000']:
@@ -55,7 +52,7 @@ def index(request):
     context = {
         'schedule': [game for game in schedule],
         'ap_rank': ap_rank,
-        'cfp_rank': cfp_rank.latest('id') if cfp_rank else None,
+        'cfp_rank': cfp_rank,
         'season': season,
         'utff': ut_football_fans,
         'lou': lou,
