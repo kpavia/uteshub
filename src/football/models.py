@@ -22,16 +22,16 @@ class Season(models.Model):
 class Game(models.Model):
     date = models.DateField()
     opponent = models.CharField(max_length=32)
-    points_for = models.IntegerField(null=True)
-    points_against = models.IntegerField(null=True)
+    points_for = models.IntegerField(null=True, blank=True)
+    points_against = models.IntegerField(null=True, blank=True)
     is_home_game = models.BooleanField(default=True)
     is_bowl_game = models.BooleanField(default=False)
-    bowl_game = models.CharField(max_length=64, null=True)
+    bowl_game = models.CharField(max_length=64, null=True, blank=True)
     season = models.ForeignKey(Season, on_delete=models.CASCADE)
-    opponent_icon = models.ForeignKey('Icon', on_delete=models.CASCADE, null=True)
-    network = models.CharField(max_length=16, null=True)
-    start_time = models.CharField(max_length=15, null=True)
-    is_conference_game = models.BooleanField(default=True)
+    opponent_icon = models.ForeignKey('Icon', on_delete=models.CASCADE, null=True, blank=True)
+    network = models.CharField(max_length=16, null=True, blank=True)
+    start_time = models.CharField(max_length=15, null=True, blank=True)
+    is_conference_game = models.BooleanField(default=True, blank=True)
 
     def __str__(self):
         return f'{self.date} - Utah vs {self.opponent}'
