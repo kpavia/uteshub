@@ -21,8 +21,8 @@
         </div>
     </div>
     <div class="row mt-5">
-        <div class="col text-center table-responsive" id="table-wrapper">
-            <h2 class="text-decoration-underline">Current {{ season.year }} schedule</h2>
+        <div class="col text-center" id="schedule">
+            <h2 class="text-decoration-underline">Current {{ season.year }} Schedule</h2>
             <div class="row mt-4">
                 <div class="col overall-record">
                     <h3>Overall</h3>
@@ -33,42 +33,50 @@
                     <p>{{ conference_record.wins }} - {{ conference_record.losses }}</p>
                 </div>
             </div>
-            <table class="text-center table" id="schedule">
-                <tr style="text-align: left;">
-                    <th>Date</th>
-                    <th>Opponent</th>
-                    <th>Network & Start Time</th>
-                    <th>Scores</th>
-                </tr>
-                {% for game in schedule %}
-                    <tr style="text-align: left;">
-                        <td>{{ game.date }}</td>
+            <div class="row">
+                <div class="col">
+                    <p class="fw-bold">Date</p>
+                </div>
+                <div class="col">
+                    <p class="fw-bold">Opponent</p>
+                </div>
+                <div class="col">
+                    <p class="fw-bold">Network & Start Time</p>
+                </div>
+                <div class="col">
+                    <p class="fw-bold">Scores</p>
+                </div>
+            </div>
+            {% for game in schedule %}
+                <div class="row">
+                    <div class="col">
+                        <p>{{ game.date }}</p>
+                    </div>
+                    <div class="col">
                         {% if game.is_home_game %}
-                            <td>vs {{ game.opponent }}</td>
+                            <p>vs {{ game.opponent }}</p>
                         {% else %}
-                            <td>
-                                @ {{ game.opponent }}
-                            </td>
+                            <p>@ {{ game.opponent }}</p>
                         {% endif %}
+                    </div>
+                    <div class="col">
                         {% if game.network %}
-                            <td>{{ game.network }}, {{game.start_time }}</td>
+                            <p>{{ game.network }}, {{ game.start_time }}</p>
                         {% else %}
-                            <td>TBD</td>
+                            <p>TBD</p>
                         {% endif %}
+                    </div>
+                    <div class="col">
                         {% if game.points_for > game.points_against %}
-                            <td>
-                                <span class="win">W</span>,  {{game.points_for}} - {{ game.points_against }}
-                            </td>
+                            <p><span class="win">W</span>, {{ game.points_for }} - {{ game.points_against }}</p>
                         {% elif game.points_for == game.points_against %}
-                            <td>TBD</td>
+                            <p>TBD</p>
                         {% else %}
-                            <td>
-                                <span class="loss">L</span>,  {{game.points_for}} - {{ game.points_against }}
-                            </td>
+                            <p><span class="loss">L</span>, {{ game.points_for }} - {{ game.points_against }}</p>
                         {% endif %}
-                    </tr>
-                {% endfor %}
-            </table>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
     <div class="row mt-5">
