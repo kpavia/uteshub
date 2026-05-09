@@ -21,7 +21,7 @@ class Season(models.Model):
 
 class Game(models.Model):
     date = models.DateField()
-    opponent = models.CharField(max_length=32)
+    opponent = models.ForeignKey('Team', on_delete=models.DO_NOTHING, null=True, blank=True)
     points_for = models.IntegerField(null=True, blank=True)
     points_against = models.IntegerField(null=True, blank=True)
     is_home_game = models.BooleanField(default=True)
@@ -34,7 +34,7 @@ class Game(models.Model):
     is_conference_game = models.BooleanField(default=True, blank=True)
 
     def __str__(self):
-        return f'{self.date} - Utah vs {self.opponent}'
+        return f'{self.date} - Utah vs {self.opponent.name}'
     
     class Meta:
         constraints = [
