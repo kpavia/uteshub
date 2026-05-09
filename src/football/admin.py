@@ -1,7 +1,7 @@
 from django.contrib import admin
 from football.models import (
     Season, Game, Ranking, Video,
-    Icon
+    Icon, Team
 )
 
 
@@ -10,3 +10,4 @@ admin.site.register(Game)
 admin.site.register(Ranking)
 admin.site.register(Video)
 admin.site.register(Icon)
+admin.site.register(Team)
