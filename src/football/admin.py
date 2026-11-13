@@ -1,7 +1,6 @@
 from django.contrib import admin
 from football.models import (
-    Season, Game, Ranking, Video,
-    Icon, Team
+    Season, Game, Ranking, Video
 )
 
 

@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'football.apps.FootballConfig',
     'user.apps.UserConfig',
     'team.apps.TeamConfig',
+    'video.apps.VideoConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
 from football.models import (Season, Game, Ranking, Video)
-from django.core.paginator import Paginator
 from pprint import pprint
 
 
