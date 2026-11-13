@@ -9,8 +9,8 @@ def index(request):
     current_season = settings.CURRENT_SEASON
     season = Season.objects.filter(year=current_season).first()
     schedule = Game.objects.filter(season=season).order_by('date')
-    ap_rank = Ranking.objects.filter(ap_or_cfp='ap').latest('id')
-    cfp_rank = Ranking.objects.filter(ap_or_cfp='cfp').latest('id')
+    ap_rank = Ranking.objects.filter(ap_or_cfp='ap', season=season).latest('id')
+    cfp_rank = Ranking.objects.filter(ap_or_cfp='cfp', season=season).latest('id')
     ut_football_fans = Video.objects.filter(channel='utah_football_fans').latest('air_date')
     lou = Video.objects.filter(channel='locked_on_utes').latest('air_date')
     u_athletics = Video.objects.filter(channel='u_of_u_athletics').latest('air_date')
