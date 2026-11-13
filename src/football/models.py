@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from team.models import Team
 
 
 class Season(models.Model):
@@ -21,7 +22,7 @@ class Season(models.Model):
 
 class Game(models.Model):
     date = models.DateField()
-    opponent = models.ForeignKey('Team', on_delete=models.DO_NOTHING, null=True, blank=True)
+    opponent = models.ForeignKey(Team, on_delete=models.DO_NOTHING, null=True, blank=True)
     points_for = models.IntegerField(null=True, blank=True)
     points_against = models.IntegerField(null=True, blank=True)
     is_home_game = models.BooleanField(default=True)
