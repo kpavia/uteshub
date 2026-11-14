@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
-from football.models import (Season, Game, Ranking, Video)
+from football.models import (Season, Game, Ranking)
+from video.models import Video
 from pprint import pprint
 
 

@@ -55,12 +55,3 @@ class Ranking(models.Model):
 
     def __str__(self):
         return f'Utah {self.ap_or_cfp.upper()} rank, week {self.week}, #{self.rank}'
-
-
-class Video(models.Model):
-    link = models.CharField(max_length=100)
-    channel = models.CharField(max_length=64, null=True)
-    air_date = models.DateTimeField(default=datetime.now)
-
-    def __str__(self):
-        return f'{self.channel}, {self.air_date}'
