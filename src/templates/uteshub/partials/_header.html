@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-md navbar-light bg-white border-bottom sticky-top" aria-label="Main">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      {# Swap the "UH" mark for your own logo <img> if you have one. #}
+      <span class="uh-mark me-2" aria-hidden="true">UH</span>
+      <span class="uh-display fs-3 text-uppercase">Utes Hub</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sportNav"
+            aria-controls="sportNav" aria-expanded="false" aria-label="Toggle sports menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="sportNav">
+      <ul class="navbar-nav uh-nav ms-md-4 gap-md-1">
+        {% for sport in sports %}
+          {% if sport.in_season %}
+            <li class="nav-item">
+              <a class="nav-link px-3{% if sport == current_sport %} active{% endif %}"
+                 href="{{ sport.get_absolute_url }}"
+                 {% if sport == current_sport %}aria-current="page"{% endif %}>{{ sport.name }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        <li class="nav-item dropdown">
+          <a class="nav-link px-3 dropdown-toggle" href="#" id="allSportsMenu" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">All sports</a>
+          <ul class="dropdown-menu shadow-sm" aria-labelledby="allSportsMenu">
+            {% for sport in sports %}
+              <li>
+                <a class="dropdown-item py-2{% if sport == current_sport %} fw-bold{% endif %}"
+                   href="{{ sport.get_absolute_url }}"
+                   {% if sport == current_sport %}aria-current="page"{% endif %}>
+                  {{ sport.name }}{% if not sport.in_season %} <span class="text-muted small">· offseason</span>{% endif %}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

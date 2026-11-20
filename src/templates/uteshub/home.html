@@ -1,0 +1,24 @@
+{% extends "uteshub/base.html" %}
+
+{% block structured_data %}
+  {% if next_game %}{% include "uteshub/partials/_game_jsonld.html" with game=next_game %}{% endif %}
+{% endblock %}
+
+{% block hero %}
+  {% include "uteshub/partials/_hero.html" %}
+{% endblock %}
+
+{% block content %}
+  {% if this_week %}
+    {% include "uteshub/partials/_this_week.html" %}
+  {% endif %}
+
+  <div class="row g-4">
+    <div class="col-lg-6">
+      {% include "uteshub/partials/_schedule.html" %}
+    </div>
+    <div class="col-lg-6">
+      {% include "uteshub/partials/_videos.html" %}
+    </div>
+  </div>
+{% endblock %}

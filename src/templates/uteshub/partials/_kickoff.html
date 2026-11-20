@@ -1,0 +1,1 @@
+{% load tz %}{% if game.time_tba and not game.network %}Time and network TBA{% else %}{% if game.time_tba %}Time TBA{% else %}{{ game.kickoff|timezone:"America/Denver"|date:"g:i A" }} MT{% endif %} · {{ game.network|default:"TBA" }}{% endif %}

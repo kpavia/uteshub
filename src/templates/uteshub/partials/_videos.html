@@ -1,0 +1,31 @@
+<section aria-labelledby="video-heading">
+  <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-3">
+    <h2 id="video-heading" class="uh-display uh-section-title text-uppercase mb-0">Latest video and podcasts</h2>
+    {% if videos_url %}<a class="fw-bold uh-link py-2" href="{{ videos_url }}">See all</a>{% endif %}
+  </div>
+  {% if videos %}
+    <div class="row row-cols-1 row-cols-sm-2 g-3">
+      {% for video in videos %}
+        <div class="col">
+          <article>
+            {# Links to YouTube without JS; uteshub.js swaps in the player on click. #}
+            <div class="ratio ratio-16x9 rounded-3 overflow-hidden bg-secondary mb-2">
+              <a href="https://www.youtube.com/watch?v={{ video.youtube_id }}"
+                 data-youtube-id="{{ video.youtube_id }}"
+                 class="uh-thumb"
+                 aria-label="Play: {{ video.title|default:video.source }}">
+                <img src="https://i.ytimg.com/vi/{{ video.youtube_id }}/hqdefault.jpg" alt="" loading="lazy" class="w-100 h-100">
+                <svg class="position-absolute top-50 start-50 translate-middle uh-play" aria-hidden="true" width="52" height="52" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,.65)"/><path d="M10 8l6 4-6 4z" fill="#fff"/></svg>
+              </a>
+            </div>
+            <div class="uh-eyebrow text-muted">{{ video.source }}</div>
+            {% if video.title %}<h3 class="fs-6 fw-bold mb-1">{{ video.title }}</h3>{% endif %}
+            {% if video.published %}<time class="small text-muted" datetime="{{ video.published|date:'c' }}">{{ video.published|date:"N j, Y" }}</time>{% endif %}
+          </article>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-muted">No recent videos.</p>
+  {% endif %}
+</section>

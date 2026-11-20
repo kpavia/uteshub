@@ -1,0 +1,65 @@
+/* Utes Hub: the few styles Bootstrap 5.0.2 doesn't cover.
+   Load this after bootstrap.min.css. */
+
+:root {
+  --uh-accent: #BE0000;      /* Utah red: accents only, never large fills */
+  --uh-ink: #14161A;
+  --uh-hero: #14161A;
+  --uh-hero-card: #22252B;
+}
+
+body { font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--uh-ink); }
+
+/* Display type: headlines and big numbers */
+.uh-display { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-weight: 700; letter-spacing: .02em; line-height: 1; }
+.uh-hero-title { font-size: calc(2.75rem + 4vw); line-height: .95; }
+@media (min-width: 1200px) { .uh-hero-title { font-size: 5.25rem; } }
+.uh-section-title { font-size: 2.125rem; line-height: 1.1; }
+.uh-eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.uh-tabular { font-variant-numeric: tabular-nums; }
+
+/* Accent color */
+.bg-utah { background-color: var(--uh-accent) !important; color: #fff; }
+.uh-link { color: var(--uh-accent); }
+.uh-link:hover { color: #8F0000; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--uh-accent); outline-offset: 2px; }
+
+/* Header */
+.uh-mark {
+  display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px;
+  border-radius: 10px; background: var(--uh-accent); color: #fff;
+  font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 1.6rem;
+}
+.uh-nav .nav-link { border-radius: 50rem; font-weight: 500; min-height: 44px; display: flex; align-items: center; }
+.uh-nav .nav-link.active { background: var(--uh-ink); color: #fff !important; font-weight: 600; }
+
+/* Hero */
+.uh-hero { background: var(--uh-hero); }
+.uh-hero .text-white-50 { color: #B4BAC4 !important; }   /* passes 4.5:1 on the hero */
+.uh-stat { background: var(--uh-hero-card); }
+.uh-stat-value { font-size: 3rem; font-variant-numeric: tabular-nums; }
+@media (max-width: 575.98px) { .uh-stat-value { font-size: 2.5rem; } }
+
+/* "This week" cards: colored top edge */
+.uh-card-accent { border-top: 4px solid var(--uh-ink); }
+.uh-card-accent-featured { border-top-color: var(--uh-accent); }
+.uh-card-accent:hover { border-color: #6c757d; }
+
+/* Schedule */
+.uh-date { min-width: 3.5rem; }
+.uh-tag { width: 3.25rem; font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; }
+.uh-meta { display: inline-block; max-width: 10em; line-height: 1.3; }
+@media (min-width: 576px) { .uh-meta { max-width: none; } }
+.list-group-item.uh-next { background: var(--uh-hero); color: #fff; border-color: transparent; }
+.uh-next .text-muted { color: #CED4DA !important; }
+.uh-next .uh-tag.border { border-color: #B4BAC4 !important; }
+
+/* Video thumbnails */
+.uh-thumb img { object-fit: cover; }
+.uh-play { transition: transform .15s; }
+.uh-thumb:hover .uh-play { transform: translate(-50%, -50%) scale(1.08) !important; }
+.ratio > iframe { border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .uh-play { transition: none; }
+}

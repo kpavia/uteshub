@@ -1,0 +1,13 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "name": "Utah {% if game.is_home %}vs{% else %}at{% endif %} {{ game.opponent|escapejs }}",
+  "sport": "{{ featured_sport.name|escapejs }}",
+  "startDate": "{{ game.kickoff|date:'c' }}",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "homeTeam": {"@type": "SportsTeam", "name": "{% if game.is_home %}Utah Utes{% else %}{{ game.opponent|escapejs }}{% endif %}"},
+  "awayTeam": {"@type": "SportsTeam", "name": "{% if game.is_home %}{{ game.opponent|escapejs }}{% else %}Utah Utes{% endif %}"}{% if game.venue %},
+  "location": {"@type": "Place", "name": "{{ game.venue|escapejs }}"}{% endif %}
+}
+</script>

@@ -2,11 +2,12 @@ from django.test import TestCase
 from unittest.mock import (patch, Mock)
 from django.conf import settings
 from football.mocks import yt_channel_response
+from datetime import datetime, timezone
 from football.tasks import (
-    get_youtube_video_id, build_embed_link,
-    save_video_db
+    get_youtube_video_id, get_latest_youtube_video,
+    build_embed_link, save_video_db
 )
-from football.models import Video
+from video.models import Video
 
 
 class YTVideoTest(TestCase):
@@ -44,3 +45,23 @@ class YTVideoTest(TestCase):
         # negative test
         failed_update = save_video_db('bad_channel_name', test_video_url)
         self.assertFalse(failed_update[1])
+
+
+    @patch('football.tasks.requests.request')
+    def test_get_latest_video_publish_date(self, mock_get):
+        mock_response = Mock()
+        mock_response.json.return_value = yt_channel_response
+        mock_get.return_value = mock_response
+
+        video_id, published_at = get_latest_youtube_video(self.channel_id)
+        self.assertEqual(video_id, self.video_id)
+        # publishedAt of the first item in football/mocks.py
+        self.assertEqual(published_at, datetime(2024, 9, 25, 13, 0, 26, tzinfo=timezone.utc))
+
+
+    def test_save_video_uses_publish_date(self):
+        published_at = datetime(2024, 9, 25, 13, 0, 26, tzinfo=timezone.utc)
+        video, created = save_video_db('locked_on_utes', 'published-date-test.com', published_at)
+
+        self.assertTrue(created)
+        self.assertEqual(video.air_date, published_at)

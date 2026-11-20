@@ -1,0 +1,31 @@
+{% load tz %}
+<li class="list-group-item px-2 py-3{% if game == next_game %} uh-next rounded-3{% endif %}">
+  <div class="d-flex align-items-center gap-3">
+    {# Date and home/away stack on phones, sit side by side from sm up. #}
+    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-1 gap-sm-3 flex-shrink-0">
+      <span class="small text-muted uh-date">{{ game.kickoff|timezone:"America/Denver"|date:"N j" }}</span>
+      {% if game.is_home %}
+        <span class="badge bg-secondary bg-gradient uh-tag">Home</span>
+      {% else %}
+        <span class="badge border border-secondary text-reset uh-tag">Away</span>
+      {% endif %}
+    </div>
+
+    <div class="flex-grow-1 fw-bold">
+      {% if game.opponent_rank %}<span class="small text-muted me-1">#{{ game.opponent_rank }}</span>{% endif %}{{ game.opponent }}
+      {% if game == next_game %}<span class="badge rounded-pill bg-utah ms-1">Next</span>{% endif %}
+    </div>
+
+    <div class="text-end flex-shrink-0">
+      {% if game.result %}
+        {% if game.recap_url %}
+          <a class="fw-bold text-reset uh-tabular" href="{{ game.recap_url }}">{% include "uteshub/partials/_score.html" %}</a>
+        {% else %}
+          <span class="fw-bold uh-tabular">{% include "uteshub/partials/_score.html" %}</span>
+        {% endif %}
+      {% else %}
+        <span class="small text-muted uh-meta">{% include "uteshub/partials/_kickoff.html" %}</span>
+      {% endif %}
+    </div>
+  </div>
+</li>

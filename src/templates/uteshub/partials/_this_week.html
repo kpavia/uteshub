@@ -1,0 +1,24 @@
+{% load tz %}
+<section class="mb-5" aria-labelledby="week-heading">
+  <h2 id="week-heading" class="uh-display uh-section-title text-uppercase mb-3">This week in Utah athletics</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+    {% for item in this_week %}
+      <div class="col">
+        <div class="card h-100 uh-card-accent{% if item.sport == featured_sport %} uh-card-accent-featured{% endif %}">
+          <div class="card-body d-flex flex-column gap-1">
+            <a class="uh-eyebrow text-muted text-decoration-none stretched-link" href="{{ item.sport.get_absolute_url }}">{{ item.sport.name }}</a>
+            {% if item.next_game %}
+              <p class="fs-5 fw-bold mb-0">{% if item.next_game.is_home %}vs{% else %}at{% endif %} {{ item.next_game.opponent }}</p>
+              <p class="small text-muted mb-0">{{ item.next_game.kickoff|timezone:"America/Denver"|date:"D, N j" }} · {% include "uteshub/partials/_kickoff.html" with game=item.next_game %}</p>
+            {% else %}
+              <p class="fs-5 fw-bold mb-0">No game scheduled</p>
+            {% endif %}
+            {% if item.last_game %}
+              <p class="small text-muted border-top pt-2 mt-auto mb-0 uh-tabular">Last: {% include "uteshub/partials/_score.html" with game=item.last_game %} {% if item.last_game.is_home %}vs{% else %}at{% endif %} {{ item.last_game.opponent }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
