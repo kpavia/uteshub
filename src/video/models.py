@@ -19,13 +19,13 @@ class Channel(models.Model):
     PLATFORMS = {
         'YT': 'YouTube'
     }
-    
+
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
-    external_id = models.CharField(max_length=100, unique=True)
+    external_id = models.CharField(max_length=100, unique=True, null=True, blank=True)
     platform = models.CharField(max_length=10, choices=PLATFORMS, default='YT')
     title_filter = models.CharField(max_length=100, default='', blank=True)
-    priority = models.IntegerField(null=True, blank=True)
+    priority = models.IntegerField(null=True, blank=True, unique=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
