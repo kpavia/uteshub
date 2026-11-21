@@ -14,11 +14,30 @@ CHANNEL_NAMES = {
 }
 
 
+class Channel(models.Model):
+
+    PLATFORMS = {
+        'YT': 'YouTube'
+    }
+    
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100, unique=True)
+    external_id = models.CharField(max_length=100, unique=True)
+    platform = models.CharField(max_length=10, choices=PLATFORMS, default='YT')
+    title_filter = models.CharField(max_length=100, default='', blank=True)
+    priority = models.IntegerField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+
+
 # Create your models here.
 class Video(models.Model):
     link = models.CharField(max_length=100)
-    channel = models.CharField(max_length=64, null=True)
-    air_date = models.DateTimeField(default=datetime.now)
+    channel = models.CharField(max_length=64, null=True, db_index=True)
+    channel_fk = models.ForeignKey(Channel, on_delete=models.PROTECT, null=True)
+    air_date = models.DateTimeField(default=datetime.now, db_index=True)
 
     def __str__(self):
         return f'{self.channel}, {self.air_date}'
