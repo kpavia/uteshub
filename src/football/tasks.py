@@ -45,10 +45,11 @@ def get_latest_youtube_video(channel_id):
     video_id = item.get('id', {}).get('videoId', {})
     snippet = item.get('snippet', {})
     video_title = snippet.get('title', '')
+    video_description = snippet.get('description', '')
     published_at = parse_youtube_datetime(snippet.get('publishedAt'))
     if video_id:
         if channel_id == settings.YT_CHANNEL_IDS.get('utah_blockcast'):
-            if 'Utah Blockcast' in video_title:
+            if 'Utah Blockcast' in video_title or 'Utah Blockcast' in video_description:
                 return (video_id, published_at)
             return (None, None)
         return (video_id, published_at)
